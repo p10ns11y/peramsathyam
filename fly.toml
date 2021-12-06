@@ -1,12 +1,13 @@
-# fly.toml file generated for peram-sathyam on 2021-12-05T23:02:54+01:00
+# fly.toml file generated for peramsathyam on 2021-12-06T15:56:52+01:00
 
-app = "peram-sathyam"
+app = "peramsathyam"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
 [env]
+  NODE_ENV = "production"
   PORT = "8080"
 
 [experimental]

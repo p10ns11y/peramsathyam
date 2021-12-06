@@ -4,7 +4,7 @@
   "description": "",
   "license": "",
   "scripts": {
-    "build": "remix build",
+    "build": "rm -rf build && remix build",
     "dev": "remix dev",
     "postinstall": "remix setup node",
     "deploy": "flyctl deploy",
