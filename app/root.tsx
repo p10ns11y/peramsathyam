@@ -124,9 +124,7 @@ function Layout({ children }: { children: React.ReactNode }) {
             title="PeramSathyam"
             className="remix-app__header-home-link"
           >
-            <h1 style={{ margin: 0, padding: 0 }}>
-              Peram Sathyam (பெரம் சத்யம்)
-            </h1>
+            <h1 style={{ margin: 0, padding: 0 }}>Peram Sathyam</h1>
           </Link>
           <nav aria-label="Main navigation" className="remix-app__header-nav">
             <ul>
