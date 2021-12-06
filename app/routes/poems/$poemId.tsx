@@ -1,15 +1,29 @@
-import type { LoaderFunction } from 'remix';
-import { useLoaderData, Link } from 'remix';
+import type { LoaderFunction, MetaFunction } from 'remix';
+import { useLoaderData } from 'remix';
 
 import type { Poem } from '~/content';
 import { poems } from '~/content';
+
+export const meta: MetaFunction = ({ data }: { data: Poem | undefined }) => {
+  if (!data) {
+    return {
+      title: 'கவிதை இல்லை',
+      description: 'கவிதை இன்னும் அந்தத் தலைப்பில் எழுதப்படவில்லை',
+    };
+  }
+
+  return {
+    title: data.title,
+    description: data.poem.slice(0, 100),
+  };
+};
 
 export const loader: LoaderFunction = ({ params }) => {
   return poems.find((poem) => poem.slug === params.poemId);
 };
 
 export default function Poem() {
-  const data = useLoaderData<Poem>();
+  const data = useLoaderData<Poem | undefined>();
 
   if (!data) {
     return (
