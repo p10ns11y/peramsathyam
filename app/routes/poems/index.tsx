@@ -12,9 +12,12 @@ export default function PoemsIndex() {
   const poems = useLoaderData<Poems>();
 
   return (
-    <ul>
+    <ul className="mx-[5vw] grid grid-cols-3 gap-4">
       {poems.map((poem) => (
-        <li key={poem.title}>
+        <li
+          key={poem.title}
+          className="w-min h-auto bg-white dark:bg-gray-800 dark:text-white shadow-2xl rounded-lg p-8"
+        >
           <Link prefetch="intent" to={poem.slug}>
             {poem.title}
           </Link>

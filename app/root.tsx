@@ -10,17 +10,13 @@ import {
 } from 'remix';
 import type { LinksFunction } from 'remix';
 
-import globalStylesUrl from '~/styles/global.css';
-import darkStylesUrl from '~/styles/dark.css';
+import resetStyles from '~/styles/reset.css';
+import tailwindStyles from '~/styles/tailwind.css';
 
 export let links: LinksFunction = () => {
   return [
-    { rel: 'stylesheet', href: globalStylesUrl },
-    {
-      rel: 'stylesheet',
-      href: darkStylesUrl,
-      media: '(prefers-color-scheme: dark)',
-    },
+    { rel: 'stylesheet', href: resetStyles },
+    { rel: 'stylesheet', href: tailwindStyles },
   ];
 };
 
@@ -104,7 +100,7 @@ function Document({
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="dark:bg-gray-900 bg-white transition duration-500">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -116,38 +112,46 @@ function Document({
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="remix-app">
-      <header className="remix-app__header">
-        <div className="container remix-app__header-content">
+    <div
+      id="root"
+      className="flex flex-col dark:text-white text-black min-h-full"
+    >
+      <header className="px-[5vw] py-9 lg:py-12">
+        <div className="flex justify-between items-center">
           <Link
             to="/"
             title="PeramSathyam"
-            className="remix-app__header-home-link"
+            className="font-bold text-2xl text-pink-700 hover:text-pink-500"
           >
-            <h1 style={{ margin: 0, padding: 0 }}>Peram Sathyam</h1>
+            <h1>Peram Sathyam</h1>
           </Link>
-          <nav aria-label="Main navigation" className="remix-app__header-nav">
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
+          <nav aria-label="Main navigation">
+            <ul className="list-none m-0 flex justify-between items-center gap-6">
+              <li className="font-bold">
+                <Link to="/" className="text-pink-700 hover:text-pink-500">
+                  Home
+                </Link>
               </li>
-              <li>
-                <Link to="/poems">Poems</Link>
+              <li className="font-bold">
+                <Link to="/poems" className="text-pink-700 hover:text-pink-500">
+                  Poems
+                </Link>
               </li>
-              <li>
-                <a href="https://github.com/p10ns11y">GitHub</a>
+              <li className="font-bold">
+                <a
+                  href="https://github.com/p10ns11y"
+                  className="text-pink-700 hover:text-pink-500"
+                >
+                  GitHub
+                </a>
               </li>
             </ul>
           </nav>
         </div>
       </header>
-      <div className="remix-app__main">
-        <div className="container remix-app__main-content">{children}</div>
-      </div>
-      <footer className="remix-app__footer">
-        <div className="container remix-app__footer-content">
-          <p>&copy; Peramanathan Sathyamoorthy</p>
-        </div>
+      <div className="flex-1">{children}</div>
+      <footer className="py-4 flex justify-center items-center">
+        <p className="text-[coral]">&copy; Peramanathan Sathyamoorthy</p>
       </footer>
     </div>
   );

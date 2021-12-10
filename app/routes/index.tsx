@@ -14,49 +14,28 @@ export let meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="landing__page">
-      <main>
-        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-          <h2
-            style={{
-              width: 'min-content',
-              padding: '2rem',
-              paddingLeft: '0',
-            }}
-          >
-            Hi, I am{' '}
-            <strong style={{ color: '#797900' }}>
-              Peramanathan Sathyamoorthy
-            </strong>
-            , a <strong style={{ color: '#008383' }}>software engineer</strong>{' '}
-            based in Stockholm, Sweden. I am passionate about{' '}
-            <strong style={{ color: 'blueviolet' }}>crafting software</strong>{' '}
-            and <strong style={{ color: 'coral' }}>writing poems</strong> in
-            Tamil
-          </h2>
-          <section>
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                marginTop: '2rem',
-                gap: '30px',
-                paddingRight: '30px',
-                boxShadow:
-                  'var(--box-shadow-side-one) 0px 19px 38px, var(--box-shadow-side-two) 0px 15px 12px',
-              }}
-            >
-              <SyntaxHighlighter language="typescript" style={nightOwl}>
-                {codeSnippet}
-              </SyntaxHighlighter>
-              <pre>
-                <code>{poem}</code>
-              </pre>
-            </div>
-          </section>
-        </div>
-      </main>
-    </div>
+    <main className="mx-[5vw] flex justify-between flex-wrap gap-8">
+      <h2 className="w-min text-2xl font-bold">
+        Hi, I am{' '}
+        <strong style={{ color: '#797900' }}>Peramanathan Sathyamoorthy</strong>
+        , a <strong style={{ color: '#008383' }}>software engineer</strong>{' '}
+        based in Stockholm, Sweden. I am passionate about{' '}
+        <strong style={{ color: 'blueviolet' }}>crafting software</strong> and{' '}
+        <strong style={{ color: 'coral' }}>writing poems</strong> in Tamil
+      </h2>
+      <section className="flex flex-wrap shadow-2xl gap-8 text-[6px] md:text-md lg:text-lg">
+        <SyntaxHighlighter
+          language="typescript"
+          style={nightOwl}
+          customStyle={{ fontSize: 'inherit', flex: '1 1 auto' }}
+        >
+          {codeSnippet}
+        </SyntaxHighlighter>
+        <pre className="text-lg">
+          <code>{poem}</code>
+        </pre>
+      </section>
+    </main>
   );
 }
 
@@ -99,8 +78,7 @@ export async function handler(argv: Arguments<Options>) {
 }
 `;
 
-const poem = `    அகலா விளக்கு
---------------------
+const poem = `அகலா விளக்கு
 
 நெஞ்சம்
 சுடர்விட ஏங்கும்
