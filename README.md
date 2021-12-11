@@ -1,6 +1,7 @@
-# Welcome to Remix!
+# Peram Sathyam's site!
 
-- [Remix Docs](https://remix.run/docs)
+<details>
+ <summary>How to setup and deploy to fly.io</summary>
 
 ## Fly Setup
 
@@ -9,7 +10,7 @@
 2. Sign up and log in to Fly
 
    ```sh
-   flyctl auth signup
+   flyctl auth **signup**
    ```
 
 3. Setup Fly. It might ask if you want to deploy, say no since you haven't built the app yet.
@@ -39,3 +40,5 @@ npm run deploy
 You can run `flyctl info` to get the url and ip address of your server.
 
 Check out the [fly docs](https://fly.io/docs/getting-started/node/) for more information.
+
+</details>

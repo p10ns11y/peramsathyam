@@ -128,11 +128,6 @@ function Layout({ children }: { children: React.ReactNode }) {
           <nav aria-label="Main navigation">
             <ul className="list-none m-0 flex justify-between items-center gap-6">
               <li className="font-bold">
-                <Link to="/" className="text-pink-700 hover:text-pink-500">
-                  Home
-                </Link>
-              </li>
-              <li className="font-bold">
                 <Link to="/poems" className="text-pink-700 hover:text-pink-500">
                   Poems
                 </Link>

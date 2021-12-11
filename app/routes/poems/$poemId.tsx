@@ -4,7 +4,7 @@ import { useLoaderData } from 'remix';
 import type { Poem } from '~/content';
 import { poems } from '~/content';
 
-export const meta: MetaFunction = ({ data }: { data: Poem | undefined }) => {
+export const meta: MetaFunction = ({ data }: { data: Poem | null }) => {
   if (!data) {
     return {
       title: 'கவிதை இல்லை',
@@ -19,7 +19,7 @@ export const meta: MetaFunction = ({ data }: { data: Poem | undefined }) => {
 };
 
 export const loader: LoaderFunction = ({ params }) => {
-  return poems.find((poem) => poem.slug === params.poemId);
+  return poems.find((poem) => poem.slug === params.poemId) || null;
 };
 
 export default function Poem() {
@@ -34,12 +34,12 @@ export default function Poem() {
   }
 
   return (
-    <>
-      <h1 style={{ color: 'coral' }}>{data.title}</h1>
-      <pre style={{ fontSize: '1rem' }}>
+    <div className="mx-[5vw] flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
+      <h1 className="text-[coral] text-3xl">{data.title}</h1>
+      <pre className="text-[12px] md:text-lg lg:text-lg">
         <code>{data.poem}</code>
       </pre>
-      <h4 style={{ color: 'blueviolet' }}>{data.date} அன்று எழுதப்பட்டது</h4>
-    </>
+      <h4 className="text-[blueviolet]">{data.date} அன்று எழுதப்பட்டது</h4>
+    </div>
   );
 }

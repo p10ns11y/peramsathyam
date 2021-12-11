@@ -14,8 +14,8 @@ export let meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <main className="mx-[5vw] flex justify-between flex-wrap gap-8">
-      <h2 className="w-min text-2xl font-bold">
+    <main className="mx-[5vw] flex justify-center items-start flex-wrap gap-4">
+      <h2 className="w-min h-auto p-4 dark:bg-gray-800 text-2xl font-bold rounded-lg shadow-2xl">
         Hi, I am{' '}
         <strong style={{ color: '#797900' }}>Peramanathan Sathyamoorthy</strong>
         , a <strong style={{ color: '#008383' }}>software engineer</strong>{' '}
@@ -23,7 +23,7 @@ export default function Index() {
         <strong style={{ color: 'blueviolet' }}>crafting software</strong> and{' '}
         <strong style={{ color: 'coral' }}>writing poems</strong> in Tamil
       </h2>
-      <section className="flex flex-wrap shadow-2xl gap-8 text-[6px] md:text-md lg:text-lg">
+      <section className="flex flex-wrap justify-center items-start flex-1 text-[6px] md:text-md lg:text-lg rounded-lg gap-4">
         <SyntaxHighlighter
           language="typescript"
           style={nightOwl}
@@ -31,7 +31,7 @@ export default function Index() {
         >
           {codeSnippet}
         </SyntaxHighlighter>
-        <pre className="text-lg">
+        <pre className="text-lg p-4 dark:bg-gray-800 rounded-lg shadow-2xl">
           <code>{poem}</code>
         </pre>
       </section>
