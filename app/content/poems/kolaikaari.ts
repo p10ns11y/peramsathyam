@@ -1,5 +1,5 @@
 const title = 'கொலைகாரி நீ';
-const slug = title.replaceAll(' ', '-');
+const slug = 'kolaikaari';
 const date = new Date('2012-04-14').toLocaleDateString('en-gb');
 
 const poem = `

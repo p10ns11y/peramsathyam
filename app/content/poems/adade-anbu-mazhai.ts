@@ -1,5 +1,5 @@
 const title = 'அடடே அன்பு மழை';
-const slug = title.replaceAll(' ', '-');
+const slug = 'adade-anbu-mazhai';
 const date = new Date('2021-03-05').toLocaleDateString('en-gb');
 
 const poem = `

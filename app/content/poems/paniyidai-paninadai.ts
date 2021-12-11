@@ -1,5 +1,5 @@
 const title = 'பணியிடை பனிநடை';
-const slug = title.replaceAll(' ', '-');
+const slug = 'paniyidai-paninadai';
 const date = new Date('2021-02-06').toLocaleDateString('en-gb');
 
 const poem = `

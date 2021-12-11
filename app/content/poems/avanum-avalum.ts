@@ -1,5 +1,5 @@
 const title = 'அவனும் அவளும்';
-const slug = title.replaceAll(' ', '-');
+const slug = 'avanum-avalum';
 const date = new Date('2021-04-04').toLocaleDateString('en-gb');
 
 const poem = `

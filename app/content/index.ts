@@ -17,6 +17,8 @@ import * as haikus from './poems/haikus';
 import * as avalOruVidukathai from './poems/aval-oru-vidukathai';
 import * as maayam from './poems/maayam';
 import * as kolaikaari from './poems/kolaikaari';
+import * as thoondil from './poems/thoondil';
+import * as mukkoodal from './poems/mukkoodal';
 
 export type Poem = {
   slug: string;
@@ -47,4 +49,6 @@ export const poems: Poems = [
   avalOruVidukathai,
   maayam,
   kolaikaari,
+  thoondil,
+  mukkoodal,
 ];

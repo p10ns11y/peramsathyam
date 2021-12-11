@@ -1,5 +1,5 @@
 const title = 'அவள் சூழ் உலகு';
-const slug = title.replaceAll(' ', '-');
+const slug = 'aval-soozh-ulagu';
 const date = new Date('2020-06-06').toLocaleDateString('en-gb');
 
 const poem = `

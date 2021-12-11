@@ -1,5 +1,5 @@
 const title = 'நறுமீன்';
-const slug = title.replaceAll(' ', '-');
+const slug = 'narumeen';
 const date = new Date('2012-10-02').toLocaleDateString('en-gb');
 
 const poem = `
@@ -36,7 +36,9 @@ const poem = `
 
     - சிரவை பெரமு
 
-# குத்தகை மீன் பிடிப்பு,திருவாசக்குளம்,சிரமேல்குடி
+# குத்தகை மீன் பிடிப்பு,
+  திருவாசக்குளம்,
+  சிரமேல்குடி
 `;
 
 export { title, slug, date, poem };

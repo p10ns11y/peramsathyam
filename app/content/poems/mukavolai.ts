@@ -1,5 +1,5 @@
 const title = 'வரைவு விழவு முகவோலை';
-const slug = title.replaceAll(' ', '-');
+const slug = 'mukavolai';
 const date = new Date('2013-12-13').toLocaleDateString('en-gb');
 
 const poem = `

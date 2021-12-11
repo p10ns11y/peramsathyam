@@ -1,5 +1,5 @@
 const title = 'நீராவி சீலை';
-const slug = title.replaceAll(' ', '-');
+const slug = 'neeravi-seelai';
 const date = new Date('2012-05-29').toLocaleDateString('en-gb');
 
 const poem = `

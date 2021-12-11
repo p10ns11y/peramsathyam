@@ -1,5 +1,5 @@
 const title = 'ஹைக்கூ கவிதைகள்';
-const slug = title.replaceAll(' ', '-');
+const slug = 'haikus';
 const date = new Date('2012-05-28').toLocaleDateString('en-gb');
 
 const poem = `
@@ -28,7 +28,10 @@ const poem = `
 இரு
 காதலே !
 
-{அருகில் வா ! நெஞ்சுக்குள் போ ! அங்கேயே இரு ! என் காதலே !}
+(அருகில் வா!
+ நெஞ்சுக்குள் போ!
+ அங்கேயே இரு!
+ என் காதலே!)
 `;
 
 export { title, slug, date, poem };

@@ -1,5 +1,5 @@
 const title = 'மாயம்';
-const slug = title.replaceAll(' ', '-');
+const slug = 'maayam';
 const date = new Date('2012-04-20').toLocaleDateString('en-gb');
 
 const poem = `

@@ -20,6 +20,7 @@ export default function PoemsIndex() {
         >
           <Link prefetch="intent" to={poem.slug}>
             <h2 className="font-bold text-lg">{poem.title}</h2>
+            <p className="pt-4 text-[coral]">{poem.poem.substring(0, 50)}...</p>
           </Link>
         </li>
       ))}

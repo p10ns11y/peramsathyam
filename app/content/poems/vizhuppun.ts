@@ -1,5 +1,5 @@
 const title = 'விழுப்புண்';
-const slug = title.replaceAll(' ', '-');
+const slug = 'vizhuppun';
 const date = new Date('2012-10-08').toLocaleDateString('en-gb');
 
 const poem = `

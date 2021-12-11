@@ -1,5 +1,5 @@
 const title = 'அன்பு செய் அந்தி';
-const slug = title.replaceAll(' ', '-');
+const slug = 'anbu-sei-anthi';
 const date = new Date('2021-03-05').toLocaleDateString('en-gb');
 
 const poem = `

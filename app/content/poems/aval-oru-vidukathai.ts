@@ -1,5 +1,5 @@
 const title = 'அவள் ஒரு விடுகதை';
-const slug = title.replaceAll(' ', '-');
+const slug = 'aval-oru-vidukathai';
 const date = new Date('2012-05-03').toLocaleDateString('en-gb');
 
 const poem = `

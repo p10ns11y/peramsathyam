@@ -1,5 +1,5 @@
 const title = 'நீலநீளப்பரவை கடல்';
-const slug = title.replaceAll(' ', '-');
+const slug = 'neela-neela-paravai';
 const date = new Date('2020-07-12').toLocaleDateString('en-gb');
 
 const poem = `

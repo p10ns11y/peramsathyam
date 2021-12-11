@@ -1,5 +1,5 @@
 const title = 'இரங்கற்பா விழுந்தது விதை தொடர்ந்திடும் கதை';
-const slug = title.replaceAll(' ', '-');
+const slug = 'irangarpa';
 const date = new Date('2013-07-05').toLocaleDateString('en-gb');
 
 const poem = `

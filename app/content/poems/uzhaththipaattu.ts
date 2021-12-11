@@ -1,5 +1,5 @@
 const title = 'உழத்திப்பாட்டு';
-const slug = title.replaceAll(' ', '-');
+const slug = 'uzhaththipaattu';
 const date = new Date('2013-09-25').toLocaleDateString('en-gb');
 
 const poem = `

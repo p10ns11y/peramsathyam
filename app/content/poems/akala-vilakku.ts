@@ -1,5 +1,5 @@
 const title = 'அகலா விளக்கு';
-const slug = title.replaceAll(' ', '-');
+const slug = 'akala-vilakku';
 const date = new Date('2021-04-04').toLocaleDateString('en-gb');
 
 const poem = `
