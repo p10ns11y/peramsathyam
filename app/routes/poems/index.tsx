@@ -4,8 +4,28 @@ import { useLoaderData, Link } from 'remix';
 import type { Poems } from '~/content';
 import { poems } from '~/content';
 
+import * as mothalPorumKathalPorum from './mothal-porum-kathal-porum.mdx';
+
+type MdxModule = {
+  filename: string;
+  attributes: {
+    meta: {
+      title: string;
+      description: string;
+    };
+  };
+};
+
+function getPoemFromModule(mdxModule: MdxModule) {
+  return {
+    slug: mdxModule.filename.replace(/\.mdx?$/, ''),
+    poem: mdxModule.attributes.meta.description,
+    ...mdxModule.attributes.meta,
+  };
+}
+
 export const loader: LoaderFunction = () => {
-  return poems as Poems;
+  return [...poems, getPoemFromModule(mothalPorumKathalPorum)] as Poems;
 };
 
 export default function PoemsIndex() {

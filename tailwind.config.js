@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'jit',
-  content: ['./app/**/*.{ts,tsx}'],
+  content: ['./app/**/*.{ts,tsx,mdx}'],
   theme: {
     extend: {},
     // custom fontSizes

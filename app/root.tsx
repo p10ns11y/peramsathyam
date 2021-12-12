@@ -8,10 +8,24 @@ import {
   ScrollRestoration,
   useCatch,
 } from 'remix';
-import type { LinksFunction } from 'remix';
+import type { LinksFunction, MetaFunction } from 'remix';
 
 import resetStyles from '~/styles/reset.css';
 import tailwindStyles from '~/styles/tailwind.css';
+
+export let meta: MetaFunction = () => {
+  let description = `Peramanathan Sathyamoorthy's personal website.`;
+  return {
+    description,
+    keywords: 'poems,blog,react,remix,typescript,tailwindcss',
+    'twitter:image': 'https://peramsathyam.fly.dev/images/profile.jpeg',
+    'twitter:card': 'summary_large_image',
+    'twitter:creator': '@peramanathan',
+    'twitter:site': '@peramanathan',
+    'twitter:title': 'Peramanathan Sathyamoorthy',
+    'twitter:description': description,
+  };
+};
 
 export let links: LinksFunction = () => {
   return [
@@ -126,20 +140,20 @@ function Layout({ children }: { children: React.ReactNode }) {
             <h1>Peram Sathyam</h1>
           </Link>
           <nav aria-label="Main navigation">
-            <ul className="list-none m-0 flex justify-between items-center gap-6">
+            <ul className="list-none m-0 flex flex-wrap justify-between items-center gap-6">
               <li className="font-bold">
                 <Link to="/poems" className="text-pink-700 hover:text-pink-500">
                   Poems
                 </Link>
               </li>
-              <li className="font-bold">
+              {/* <li className="font-bold">
                 <a
                   href="https://github.com/p10ns11y"
                   className="text-pink-700 hover:text-pink-500"
                 >
                   GitHub
                 </a>
-              </li>
+              </li> */}
             </ul>
           </nav>
         </div>

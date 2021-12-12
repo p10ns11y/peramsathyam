@@ -2,8 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer components {
-  .custom-class {
-    @apply ...;
+/* For using in mdx files */
+@layer components {
+  .main-content {
+    @apply mx-[5vw] flex flex-col justify-center items-center md:items-start lg:items-start gap-4;
   }
-} */
+
+  .section-container {
+    @apply grid grid-flow-row-dense grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] md:grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-8 sm:gap-4 sm:self-stretch;
+  }
+
+  .section-card {
+    @apply dark:bg-gray-800 h-fit flex flex-col p-2 gap-4 shadow-2xl rounded-lg;
+  }
+}
