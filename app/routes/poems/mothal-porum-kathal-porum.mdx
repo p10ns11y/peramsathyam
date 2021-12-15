@@ -12,11 +12,13 @@ import PoemSection from '~/components/poem-section';
 
 <main className="main-content">
   <h1 className="text-[coral] font-bold text-3xl">{attributes.meta.title}</h1>
-  <p>சோழ தேசத்து வீரன் ஒருவன் தன் புலிப் படை வாகை சூடி கொண்டாடும் போர்க்களத்தில்{' '}
-    மெல்ல மௌனித்து விலகி, வெற்றியை தாண்டிய ஏதோவொரு மகிழ்ச்சியை உள்ளத்தில்{' '}
-    தேக்கி விரட்டத் தொடங்கினான் குதிரையை. நீண்ட காவிரி கரையில் அவன் எழுதிய {' '}
-    காட்சிகளும் , போய்ச் சேர்ந்து களித்த பொழுதுகளும்...</p>
-  <div className="section-container">
+  <p>
+    சோழ தேசத்து வீரன் ஒருவன் தன் புலிப் படை வாகை சூடி கொண்டாடும் போர்க்களத்தில்{' '}
+    மெல்ல மௌனித்து விலகி, வெற்றியை தாண்டிய ஏதோவொரு மகிழ்ச்சியை உள்ளத்தில் தேக்கி
+    விரட்டத் தொடங்கினான் குதிரையை. நீண்ட காவிரி கரையில் அவன் எழுதிய காட்சிகளும்
+    , போய்ச் சேர்ந்து களித்த பொழுதுகளும்...
+  </p>
+  <article className="space-y-4 min-w-[300px] columns-1 sm:columns-2 lg:columns-3 xl:columns-4">
     <section className="section-card">
       <h2 className="text-green-600 font-bold text-center">காட்சி ஒன்று</h2>
       <PoemSection>
@@ -264,8 +266,7 @@ import PoemSection from '~/components/poem-section';
         மந்திர மொழி எடுத்து வாழ்த்திற்று அந்தி !]`}
       </PoemSection>
     </section>
-
-  </div>
+  </article>
   <h3>-{'  '}சோழநாட்டு மாலை மயக்கங்களோடு பெரமு</h3>
   <h4 className="text-[blueviolet]">
     {new Date('2011-07-10').toLocaleDateString('en-gb')} அன்று எழுதப்பட்டது

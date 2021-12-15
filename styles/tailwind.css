@@ -5,11 +5,7 @@
 /* For using in mdx files */
 @layer components {
   .main-content {
-    @apply mx-[5vw] flex flex-col justify-center items-center md:items-start lg:items-start gap-4;
-  }
-
-  .section-container {
-    @apply grid grid-flow-row-dense grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] md:grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-8 sm:gap-4 sm:self-stretch;
+    @apply mx-[5vw] flex flex-col justify-center items-center gap-4;
   }
 
   .section-card {
