@@ -4,7 +4,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-function PoemSection(props: Props) {
+function PoemSegment(props: Props) {
   if (typeof props.children !== 'string') {
     return null;
   }
@@ -21,4 +21,4 @@ function PoemSection(props: Props) {
   );
 }
 
-export default PoemSection;
+export default PoemSegment;

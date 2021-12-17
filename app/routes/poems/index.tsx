@@ -5,6 +5,7 @@ import type { Poems } from '~/content';
 import { poems } from '~/content';
 
 import * as mothalPorumKathalPorum from './mothal-porum-kathal-porum.mdx';
+import * as theroduVeethi from './therodu-veethi.mdx';
 
 type MdxModule = {
   filename: string;
@@ -25,7 +26,11 @@ function getPoemFromModule(mdxModule: MdxModule) {
 }
 
 export const loader: LoaderFunction = () => {
-  return [...poems, getPoemFromModule(mothalPorumKathalPorum)] as Poems;
+  return [
+    ...poems,
+    getPoemFromModule(mothalPorumKathalPorum),
+    getPoemFromModule(theroduVeethi),
+  ] as Poems;
 };
 
 export default function PoemsIndex() {

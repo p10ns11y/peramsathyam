@@ -8,20 +8,20 @@ meta:
   'og:image': 'https://peramsathyam.fly.dev/images/mothal-porum-kathal-porum.jpeg'
 ---
 
-import PoemSection from '~/components/poem-section';
+import PoemSegment from '~/components/poem-segment';
 
 <main className="main-content">
   <h1 className="text-[coral] font-bold text-3xl">{attributes.meta.title}</h1>
-  <p>
-    சோழ தேசத்து வீரன் ஒருவன் தன் புலிப் படை வாகை சூடி கொண்டாடும் போர்க்களத்தில்{' '}
+  <div>
+    சோழ தேசத்து வீரன் ஒருவன் தன் புலிப் படை வாகை சூடி கொண்டாடும் போர்க்களத்தில்
     மெல்ல மௌனித்து விலகி, வெற்றியை தாண்டிய ஏதோவொரு மகிழ்ச்சியை உள்ளத்தில் தேக்கி
     விரட்டத் தொடங்கினான் குதிரையை. நீண்ட காவிரி கரையில் அவன் எழுதிய காட்சிகளும்
     , போய்ச் சேர்ந்து களித்த பொழுதுகளும்...
-  </p>
+  </div>
   <article className="space-y-4 min-w-[300px] columns-1 sm:columns-2 lg:columns-3 xl:columns-4">
     <section className="section-card">
       <h2 className="text-green-600 font-bold text-center">காட்சி ஒன்று</h2>
-      <PoemSection>
+      <PoemSegment>
         {`"செக்கச் சிவந்த - இதழ்
         நிறம் எடுத்து
         வெட்கிச் சிவந்த - அவள்
@@ -29,8 +29,8 @@ import PoemSection from '~/components/poem-section';
         குழைத்திட்டது போல்
         செம்மண் ராஜபாட்டை !"
         உருகத் தொடங்கியது வீரமனம்!`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`அவள் திசையில் மனசு ஓட
         ஓடிய மனதை துரத்தி
         இந்த குதிரை ஓட - கிளம்பிய
@@ -38,18 +38,18 @@ import PoemSection from '~/components/poem-section';
         தோற்றுப்போன தேசத்தின்
         பக்கம் எரிந்த சூரியன்
         மறைந்தது ..!`}
-      </PoemSection>
+      </PoemSegment>
     </section>
     <section className="section-card">
       <h2 className="text-green-600 font-bold text-center">காட்சி இரண்டு</h2>
-      <PoemSection>
+      <PoemSegment>
         {`நெற்கதிர்கள் கொஞ்சி
         கொஞ்சி சகதியாடும்
         நெடு வயல்கள்
         பச்சை நிறம் பூசின
         கருப்பு விழிகளில் ..!`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`மாட்டிக் கொண்ட மணிகளை
         ஆட்டிக் கொண்டே நடைபோட்ட
         காளை கூட்டத்தின் ஒத்திசை
@@ -61,8 +61,8 @@ import PoemSection from '~/components/poem-section';
         "இயற்கை எழில் என்னும் - இந்த
         மாயமெல்லாம் அவளும்தான்
         காட்டிடுவாள் அத்தைனையும் ஓரிடத்தில் !"`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`சோழ தேசத்தில் - சுதந்திரமாய்
         திரியும் நாரைகள் ஆண்கள் !
         ஒற்றை குளத்தில் நிம்மதியாய்
@@ -72,11 +72,11 @@ import PoemSection from '~/components/poem-section';
         என்னதான் வித்தை இதுவோ ?
         திரும்பும் நாள் வரை பொல்லாத
         தாகமும் எடுப்பதில்லை !`}
-      </PoemSection>
+      </PoemSegment>
     </section>
     <section className="section-card">
       <h2 className="text-green-600 font-bold text-center">காட்சி மூன்று</h2>
-      <PoemSection>
+      <PoemSegment>
         {`பொன்மகள் நீராடும்
         பொன்னி நதிக்கரையில்
         நின்று கனைத்தது குதிரை!
@@ -84,8 +84,8 @@ import PoemSection from '~/components/poem-section';
         ஆரம்ப வேளையில்
         நீருக்குள் இருந்து மெல்ல
         உதித்தாள் அழகு சந்திரை !`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`"என் அத்தான் " என
         சொல்லத்தான் - போரில்
         பெரும் வெற்றித்தான் எனும்
@@ -100,8 +100,8 @@ import PoemSection from '~/components/poem-section';
         ஒளிவு மறைவாய் - மாற்று
         துணிகள் இளைப்பாறும்
         நிழல் "தரு"வின் பின் புறத்தே ..!`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`"புண்ணிய நதியில் - பகைவர்
         குருதி தோய்ந்த உடலை
         நனைப்பதோ ? - என்
@@ -117,19 +117,19 @@ import PoemSection from '~/components/poem-section';
         ஒப்பிடவே பறித்தெடுத்து
         விரைவேன் அவளிடம் ! "
         ஓடினான் அங்கு !`}
-      </PoemSection>
+      </PoemSegment>
     </section>
     <section className="section-card">
       <h2 className="text-green-600 font-bold text-center">காட்சி நான்கு</h2>
-      <PoemSection>
+      <PoemSegment>
         {`காய்கின்ற ஈரச் சீலை
         கட்டிவைத்த வீட்டுக்குள்ளே
         கனியெனவே அமர்ந்திருந்தாள் !
         அருகில் போய் அமர்ந்தான்
         அந்த தொட்டால் சிணுங்கி
         தொடுமுன்னே சிணுங்கிணாள் !`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`அடுத்த போர் மூண்டது - ஊடல்
         திரட்டி சிவந்த வேல் விழிகளில் !
         "நம் திருமண கெட்டிமேளம்
@@ -139,12 +139,12 @@ import PoemSection from '~/components/poem-section';
         வந்தேன் பெண்ணே - உன்
         கோபம் இனி என்ன ?
         சொல்லிவிடு கண்ணே !"`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`[கேட்டக் கேள்விக்கு பதிலாய்]
         .... மௌனம் .....`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`"கொஞ்ச வந்தவனை
         கெஞ்ச வைக்கும் - உன்
         நெஞ்சத்து மௌனம்
@@ -157,19 +157,19 @@ import PoemSection from '~/components/poem-section';
         தஞ்சம் நான் அடைகின்றேன்
         மிஞ்சாதே ! தா ! உன் மௌனம் !
         விஞ்சும் நம் காதல் இன்னும் நீளும் ! "`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`கோபம் குடித்தவள் போல்
         வெடுக்கென்று முகத்தை
         மறுபுறம் வைத்து - செவிகள் தீட்டி
         இதுவரையில் அவன் காதல் மொழி
         கேட்டு விட்டு - இன்னும் என்பதுபோல்
         கரையாமல் இருந்தால் கல்லெனவே !`}
-      </PoemSection>
+      </PoemSegment>
     </section>
     <section className="section-card">
       <h2 className="text-green-600 font-bold text-center">காட்சி ஐந்து</h2>
-      <PoemSection>
+      <PoemSegment>
         {`கெஞ்சல் நிறுத்தி - சோகம்
         தோய்ந்தவனின் சிந்தை திடீரென
         கிசு கிசுத்தது உள்ளுக்குள்:
@@ -178,15 +178,15 @@ import PoemSection from '~/components/poem-section';
         சரணடைந்தும் - அவள் உள்ளம்
         இருக்கிறது இன்னும் கரையாது !
         இனி சூழ்ச்சி அன்றி வேறு வழியேது ! "`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`அம்மோ ! எனக் கூவி - அவன்
         நெஞ்சைப் பிடிக்க - பதறிப் போய்
         அவள் துடிக்க - கூடியிருந்த
         குருவிக் கூட்டங்கள் கலைந்தன
         அவள் ஊடலை உடன் தூக்கி கொண்டு !`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`கொஞ்ச நேர கவனிப்பில் - இந்த
         கள்வனின் கள்ளத் தனம்
         தெளிந்தாள் கள்ளி !
@@ -196,8 +196,8 @@ import PoemSection from '~/components/poem-section';
         முறைத்திருந்த விழி இரண்டும்
         முண்டியடித்து பொழிந்தன
         வெட்கத்தையும், காதலையும் ..!`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`"உயிர் என வைத்தாய் எனை
         ஓரவிழி எடுத்து தொடுத்தாய் கணை
         யாராடி உனக்கிங்கு இணை..."
@@ -205,14 +205,14 @@ import PoemSection from '~/components/poem-section';
         கட்டினான் சொல்லால் ஓர் அணை !
         அடங்காத காவிரியை அடக்குவதில்
         தோற்றது அந்த கரிகாலன் கல்லணை !`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`காதலில் வளர்ந்த - அந்த
         காவிரி வெற்றிலை - சிவந்தே
         மடங்கிற்று கைக்குள் !
         ஊடல் போரிலும் வென்றான் தலைவன் ..!`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`ஒன்றுமில்லாததை - அறிய
         துடிக்கும் ஆணாய் அவன் !
         ஒன்றை அனுபவிக்க
@@ -230,8 +230,8 @@ import PoemSection from '~/components/poem-section';
         மறக்கும் வேலை !
         மேனிக்கு- பரவும் தீயில்
         பரவசம் கொள்ளும் வேலை !`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`பசித்திருந்த அவன் குதிரையும்
         அந்தப் பக்கம் - செழித்து
         வளர்ந்திருந்த புல்லை
@@ -241,11 +241,11 @@ import PoemSection from '~/components/poem-section';
         ஓசைக் கூடுகள் கட்டின !
         உள்ளங்கை கதகதப்பில் -அந்திச்
         சூரிய கிரணங்கள் மயங்கின !`}
-      </PoemSection>
+      </PoemSegment>
     </section>
     <section className="section-card">
       <h2 className="text-green-600 font-bold text-center">காட்சி ஆறு</h2>
-      <PoemSection>
+      <PoemSegment>
         {`இன்பம் கொடுத்த அந்த
         அந்தியும் சாய்கின்ற பொன் நேரம்
         தித்திப்பில் திளைத்தவன் - தன்
@@ -259,12 +259,12 @@ import PoemSection from '~/components/poem-section';
         நெடுகும் கேட்டது ஓர் வாழ்த்து !
         "பிரேமம் ! ஜெயம்! ஜெயம் ! " - அந்தி
         பாடிய அந்த விசித்திர வாழ்த்து !`}
-      </PoemSection>
-      <PoemSection>
+      </PoemSegment>
+      <PoemSegment>
         {`[சுந்தர தமிழ் எடுத்தால் - காதுகள்
         பூட்டிக் கொண்ட காதல் கலையும் என்று
         மந்திர மொழி எடுத்து வாழ்த்திற்று அந்தி !]`}
-      </PoemSection>
+      </PoemSegment>
     </section>
   </article>
   <h3>-{'  '}சோழநாட்டு மாலை மயக்கங்களோடு பெரமு</h3>
