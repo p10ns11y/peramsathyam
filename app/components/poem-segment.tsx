@@ -21,4 +21,8 @@ function PoemSegment(props: Props) {
   );
 }
 
+// Not letting the minifier mangle the component name
+// since it is used in poem writter
+PoemSegment.displayName = 'PoemSegment';
+
 export default PoemSegment;
