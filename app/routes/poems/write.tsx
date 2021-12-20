@@ -1,3 +1,4 @@
+// import type { LinksFunction } from 'remix';
 import React from 'react';
 import clsx from 'clsx';
 import { format as prettyFormat, plugins } from 'pretty-format';
@@ -11,7 +12,20 @@ SyntaxHighlighter.registerLanguage('tsx', tsx);
 
 const { ReactElement } = plugins;
 
-function getCharacterLength(unicodeString: string) {
+// Currently browsers don't recognize the svg's `use` tag using
+// the parts of svg-sprite!
+// The resource http://localhost:3000/icons.svg was preloaded using link preload
+// but not used within a few seconds from the window's load event.
+// Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+/* export const links: LinksFunction = () => [
+  {
+    rel: 'preload',
+    href: '/icons.svg',
+    as: 'image',
+  },
+]; */
+
+function getLengthForUnicodeString(unicodeString: string) {
   /* The following is specific to Tamil language
   unicodeString
     .replaceAll(/\p{Letter}/gu, '-')
@@ -28,6 +42,7 @@ function getCharacterLength(unicodeString: string) {
 export default function PoemWritter() {
   const [poemTitle, setPoemTitle] = React.useState<string>('');
   const [poemText, setPoemText] = React.useState<string>('');
+  const [contentCopied, setContentCopied] = React.useState<boolean>(false);
 
   function getMdxMeta(title: string = '') {
     return `---
@@ -53,7 +68,7 @@ meta:
     const emptyLineRegEx = /^\s*$/gm;
     const totalLines = poemText.split('\n').length;
     const maxLineLength = Math.max(
-      ...poemText.split('\n').map((line) => getCharacterLength(line))
+      ...poemText.split('\n').map((line) => getLengthForUnicodeString(line))
     );
     const date = new Date();
     const dateString = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
@@ -103,15 +118,12 @@ meta:
     )}\n\n${getComponentsImports()}\n\n${getFormattedPoem(poemText)}`;
   }
 
-  async function copyText(event: React.MouseEvent<HTMLDivElement>) {
-    if (!poemText) {
-      return;
-    }
-
+  async function copyText(event: React.MouseEvent<HTMLButtonElement>) {
     await navigator.clipboard.writeText(getMdxContent());
-    await navigator.clipboard
-      .readText()
-      .then((clipText) => console.log(clipText));
+    setContentCopied(true);
+    setTimeout(() => {
+      setContentCopied(false);
+    }, 1000);
   }
 
   return (
@@ -139,7 +151,7 @@ meta:
           className="dark:bg-gray-700 p-4 shadow-2xl"
         />
       </div>
-      <div onClick={copyText} className="flex-1 max-h-[632px] overflow-auto">
+      <div className="relative flex-1 max-h-[632px] overflow-auto">
         <SyntaxHighlighter
           language="tsx"
           style={materialDark}
@@ -152,6 +164,36 @@ meta:
         >
           {getMdxContent()}
         </SyntaxHighlighter>
+        <button
+          aria-label="copy-content"
+          onClick={copyText}
+          className="absolute top-4 right-4 flex gap-2"
+        >
+          {contentCopied ? (
+            <svg
+              fill="white"
+              aria-hidden="true"
+              focusable="false"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <use href="/icons.svg#check-outline" />
+            </svg>
+          ) : (
+            <svg
+              fill="white"
+              aria-hidden="true"
+              focusable="false"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <use href="/icons.svg#content-copy" />
+            </svg>
+          )}
+          <span>{contentCopied ? 'Copied' : 'Copy'}</span>
+        </button>
       </div>
     </main>
   );
