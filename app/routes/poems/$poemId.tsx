@@ -42,7 +42,11 @@ export default function Poem() {
       </pre>
       <h4 className="text-[blueviolet]">{data.date} அன்று எழுதப்பட்டது</h4>
       {data.audioURL ? (
-        <audio className="w-[250px]" src={data.audioURL} controls />
+        <audio
+          className="hidden sm:block w-[250px]"
+          src={data.audioURL}
+          controls
+        />
       ) : null}
       <Record audioFileName={data.slug} />
     </main>

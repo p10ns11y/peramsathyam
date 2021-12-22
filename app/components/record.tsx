@@ -68,7 +68,7 @@ export default function Record(props: Props) {
   }
 
   return (
-    <details className="p-4 open:p-4 open:dark:bg-gray-800 open:shadow-2xl open:dark:shadow-gray-800 open:rounded-lg">
+    <details className="hidden sm:block p-4 open:p-4 open:dark:bg-gray-800 open:shadow-2xl open:dark:shadow-gray-800 open:rounded-lg">
       <summary>Want to record and download in your voice?</summary>
 
       <div className="flex flex-col gap-4">
