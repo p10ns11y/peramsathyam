@@ -118,7 +118,7 @@ meta:
     )}\n\n${getComponentsImports()}\n\n${getFormattedPoem(poemText)}`;
   }
 
-  async function copyText(event: React.MouseEvent<HTMLButtonElement>) {
+  async function copyText() {
     await navigator.clipboard.writeText(getMdxContent());
     setContentCopied(true);
     setTimeout(() => {

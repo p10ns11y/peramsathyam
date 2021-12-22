@@ -25,6 +25,7 @@ export type Poem = {
   title: string;
   poem: string;
   date: string;
+  audioURL?: string;
 };
 
 export type Poems = Array<Poem>;

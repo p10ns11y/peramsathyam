@@ -3,6 +3,7 @@ import { useLoaderData } from 'remix';
 
 import type { Poem } from '~/content';
 import { poems } from '~/content';
+import Record from '~/components/record';
 
 export const meta: MetaFunction = ({ data }: { data: Poem | null }) => {
   if (!data) {
@@ -23,7 +24,7 @@ export const loader: LoaderFunction = ({ params }) => {
 };
 
 export default function Poem() {
-  const data = useLoaderData<Poem | undefined>();
+  const data = useLoaderData<Poem | null>();
 
   if (!data) {
     return (
@@ -40,6 +41,10 @@ export default function Poem() {
         <code>{data.poem}</code>
       </pre>
       <h4 className="text-[blueviolet]">{data.date} அன்று எழுதப்பட்டது</h4>
+      {data.audioURL ? (
+        <audio className="w-[250px]" src={data.audioURL} controls />
+      ) : null}
+      <Record audioFileName={data.slug} />
     </main>
   );
 }

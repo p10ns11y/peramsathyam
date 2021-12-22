@@ -24,4 +24,6 @@ const poem = `
       - வெற்றியன்பன்(Jai’s Beloved) பெரமு
 `;
 
-export { title, slug, date, poem };
+const audioURL = `/audios/${slug}.webm`;
+
+export { title, slug, date, poem, audioURL };

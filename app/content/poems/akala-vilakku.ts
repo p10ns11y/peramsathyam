@@ -8,7 +8,6 @@ const poem = `
 நெய் இழையிட்ட
 அகல் விளக்கு!
 
-
 ‘பொறி’யென
 கண்கள்
 உரசி பற்றிக்
@@ -20,4 +19,6 @@ const poem = `
     - பெரமு
 `;
 
-export { title, slug, date, poem };
+const audioURL = `/audios/${slug}.webm`;
+
+export { title, slug, date, poem, audioURL };
