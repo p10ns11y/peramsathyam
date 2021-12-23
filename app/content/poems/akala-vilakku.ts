@@ -20,5 +20,6 @@ const poem = `
 `;
 
 const audioURL = `/audios/${slug}.webm`;
+const mp3AudioURL = `/audios/mp3/${slug}.mp3`;
 
-export { title, slug, date, poem, audioURL };
+export { title, slug, date, poem, audioURL, mp3AudioURL };

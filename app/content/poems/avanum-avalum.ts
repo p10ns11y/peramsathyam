@@ -21,9 +21,10 @@ const poem = `
 அடுத்து தோன்றிடும்
 நாணத்திற்கு செஞ்சாந்து குழைத்திட!
 
-      - வெற்றியன்பன்(Jai’s Beloved) பெரமு
+      - வெற்றியன்பன்(Jai's Beloved) பெரமு
 `;
 
 const audioURL = `/audios/${slug}.webm`;
+const mp3AudioURL = `/audios/mp3/${slug}.mp3`;
 
-export { title, slug, date, poem, audioURL };
+export { title, slug, date, poem, audioURL, mp3AudioURL };

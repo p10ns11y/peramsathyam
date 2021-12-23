@@ -10,12 +10,16 @@ export const meta: MetaFunction = ({ data }: { data: Poem | null }) => {
     return {
       title: 'கவிதை இல்லை',
       description: 'கவிதை இன்னும் அந்தத் தலைப்பில் எழுதப்படவில்லை',
+      'twitter:title': 'கவிதை இல்லை',
+      'twitter:description': 'கவிதை இன்னும் அந்தத் தலைப்பில் எழுதப்படவில்லை',
     };
   }
 
   return {
     title: data.title,
     description: data.poem.slice(0, 100),
+    'twitter:title': data.title,
+    'twitter:description': data.poem.slice(0, 100),
   };
 };
 
@@ -41,12 +45,12 @@ export default function Poem() {
         <code>{data.poem}</code>
       </pre>
       <h4 className="text-[blueviolet]">{data.date} அன்று எழுதப்பட்டது</h4>
-      {data.audioURL ? (
-        <audio
-          className="hidden sm:block w-[250px]"
-          src={data.audioURL}
-          controls
-        />
+      {data.audioURL || data.mp3AudioURL ? (
+        <audio className="w-[250px]" controls>
+          <source src={data.audioURL} type="audio/webm" />
+          <source src={data.mp3AudioURL} type="audio/mp3" />
+          Audio file format is not supported in this browser
+        </audio>
       ) : null}
       <Record audioFileName={data.slug} />
     </main>
