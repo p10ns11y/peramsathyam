@@ -114,7 +114,7 @@ function Document({
         <Meta />
         <Links />
       </head>
-      <body className="dark:bg-gray-900 bg-white transition duration-500">
+      <body className="bg-white dark:bg-gray-900 dark:bg-dark-radial-body transition duration-500">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -160,7 +160,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       </header>
       <div className="flex-1">{children}</div>
       <footer className="py-4 flex justify-center items-center">
-        <p className="text-[coral]">&copy; Peramanathan Sathyamoorthy</p>
+        <p className="text-[#ff5085]">&copy; Peramanathan Sathyamoorthy</p>
       </footer>
     </div>
   );
