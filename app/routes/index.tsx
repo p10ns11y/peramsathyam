@@ -12,28 +12,6 @@ export let meta: MetaFunction = () => {
   };
 };
 
-// https://csswizardry.com/2020/05/the-fastest-google-fonts/
-export let links: LinksFunction = () => [
-  // Preemptively warm up the fonts’ origin.
-  {
-    rel: 'preconnect',
-    href: 'https://fonts.gstatic.com',
-    crossOrigin: 'anonymous',
-  },
-  // Initiate a high-priority, asynchronous fetch for the CSS file.
-  {
-    rel: 'preload',
-    href: 'https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap',
-    as: 'style',
-  },
-  // Initiate a low-priority, asynchronous fetch that gets applied to the page
-  // only after it’s arrived. Works in all browsers with JavaScript enabled.
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap',
-  },
-];
-
 export default function Index() {
   return (
     <main className="mx-[5vw] flex justify-center items-start flex-wrap gap-4">
@@ -45,19 +23,20 @@ export default function Index() {
         <strong style={{ color: 'blueviolet' }}>crafting software</strong> and{' '}
         <strong style={{ color: 'coral' }}>writing poems</strong> in Tamil
       </h2>
-      <section className="flex flex-wrap justify-center items-start flex-1 text-[6px] sm:text-[12px] lg:text-base rounded-lg gap-4">
+      <section className="font-mono flex flex-wrap justify-center items-start flex-1 text-[6px] sm:text-[12px] lg:text-base rounded-lg gap-4">
         <SyntaxHighlighter
           language="typescript"
           style={nightOwl}
           customStyle={{
             fontSize: 'inherit',
             flex: '1 1 auto',
-            fontFamily: 'Roboto Mono',
+            fontFamily: 'inherit',
+            borderRadius: '0.5rem',
           }}
         >
           {codeSnippet}
         </SyntaxHighlighter>
-        <pre className="text-lg p-4 dark:bg-gray-800 rounded-lg shadow-2xl [font-family:Roboto_Mono]">
+        <pre className="text-lg p-4 dark:bg-gray-800 rounded-lg shadow-2xl font-mono">
           <code>{poem}</code>
         </pre>
       </section>

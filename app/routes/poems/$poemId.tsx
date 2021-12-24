@@ -40,7 +40,9 @@ export default function Poem() {
 
   return (
     <main className="mx-[5vw] flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-      <h1 className="text-[coral] text-3xl">{data.title}</h1>
+      <h1 className="text-[goldenrod] font-extrabold dark:poem-title-shadow text-3xl">
+        {data.title}
+      </h1>
       <pre className="text-[12px] md:text-lg lg:text-lg">
         <code>{data.poem}</code>
       </pre>

@@ -41,7 +41,7 @@ export default function PoemsIndex() {
       {poems.map((poem) => (
         <li
           key={poem.title}
-          className="p-4 h-auto dark:bg-gray-800 shadow-md hover:shadow-2xl rounded-lg break-words"
+          className="p-4 h-auto dark:bg-gray-800 shadow-md hover:shadow-glowing rounded-lg break-words"
         >
           <Link prefetch="intent" to={poem.slug}>
             <h2 className="font-bold text-lg">{poem.title}</h2>

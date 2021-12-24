@@ -12,3 +12,10 @@
     @apply dark:bg-gray-800 h-fit flex flex-col p-2 gap-4 shadow-2xl rounded-lg;
   }
 }
+
+@layer utilities {
+  .poem-title-shadow {
+    text-shadow: -1px 1px 0 crimson, -2px 2px 0 crimson, -3px 3px 0 crimson,
+      -4px 4px 0 crimson, -5px 5px 0 crimson, -6px 6px 0 crimson;
+  }
+}

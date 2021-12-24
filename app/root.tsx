@@ -29,6 +29,25 @@ export let meta: MetaFunction = () => {
 
 export let links: LinksFunction = () => {
   return [
+    // https://csswizardry.com/2020/05/the-fastest-google-fonts/
+    // Preemptively warm up the fonts’ origin.
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
+      crossOrigin: 'anonymous',
+    },
+    // Initiate a high-priority, asynchronous fetch for the CSS file.
+    {
+      rel: 'preload',
+      href: 'https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap',
+      as: 'style',
+    },
+    // Initiate a low-priority, asynchronous fetch that gets applied to the page
+    // only after it’s arrived. Works in all browsers with JavaScript enabled.
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap',
+    },
     { rel: 'stylesheet', href: resetStyles },
     { rel: 'stylesheet', href: tailwindStyles },
   ];
@@ -132,12 +151,10 @@ function Layout({ children }: { children: React.ReactNode }) {
     >
       <header className="px-[5vw] py-9 lg:py-12">
         <div className="flex justify-between items-center">
-          <Link
-            to="/"
-            title="PeramSathyam"
-            className="font-bold text-2xl text-pink-700 hover:text-pink-500"
-          >
-            <h1>Peram Sathyam</h1>
+          <Link to="/" title="PeramSathyam">
+            <h1 className="font-bold text-2xl text-pink-700 hover:text-pink-500">
+              Peram Sathyam
+            </h1>
           </Link>
           <nav aria-label="Main navigation">
             <ul className="list-none m-0 flex flex-wrap justify-between items-center gap-6">

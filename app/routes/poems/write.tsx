@@ -81,7 +81,7 @@ meta:
 
     return prettyFormat(
       <main className="main-content">
-        <h1 className="text-[coral] font-bold text-3xl">
+        <h1 className="text-[goldenrod] font-extrabold dark:poem-title-shadow text-3xl">
           {`\{attributes.meta.title\}`}
         </h1>
         <article
