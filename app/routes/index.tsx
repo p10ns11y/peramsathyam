@@ -1,4 +1,4 @@
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from '@remix-run/node';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import ts from 'react-syntax-highlighter/dist/cjs/languages/hljs/typescript';
 import nightOwl from 'react-syntax-highlighter/dist/cjs/styles/hljs/night-owl';
