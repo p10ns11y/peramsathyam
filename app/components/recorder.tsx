@@ -6,7 +6,7 @@ type Props = {
   audioFileName?: string;
 };
 
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
   inspect({
     iframe: false,
   });
