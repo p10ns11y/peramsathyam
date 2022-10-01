@@ -1,9 +1,9 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderFunction, MetaFunction } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
 
 import type { Poem } from '~/content';
 import { poems } from '~/content';
-import Record from '~/components/record';
+import Recorder from '~/components/recorder';
 
 export const meta: MetaFunction = ({ data }: { data: Poem | null }) => {
   if (!data) {
@@ -54,7 +54,7 @@ export default function Poem() {
           Audio file format is not supported in this browser
         </audio>
       ) : null}
-      <Record audioFileName={data.slug} />
+      <Recorder audioFileName={data.slug} />
     </main>
   );
 }
