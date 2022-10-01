@@ -190,7 +190,9 @@ const recorderMachine = createMachine<RecorderContext>(
 
 export default function Recorder(props: Props) {
   const { audioFileName } = props;
-  const [state, send] = useMachine(recorderMachine, { devTools: true });
+  const [state, send] = useMachine(recorderMachine, {
+    devTools: process.env.NODE_ENV === 'development',
+  });
   const { context } = state;
 
   return (
