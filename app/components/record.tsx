@@ -94,6 +94,7 @@ export default function Record(props: Props) {
             </>
           ) : null}
           {recordState === RecordState.Recorded ? (
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <a
               role="button"
               className="inline-block text-white p-2 rounded-full bg-pink-700 hover:bg-pink-500"

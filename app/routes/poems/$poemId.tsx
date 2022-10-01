@@ -27,7 +27,7 @@ export const loader: LoaderFunction = ({ params }) => {
   return poems.find((poem) => poem.slug === params.poemId) || null;
 };
 
-export default function Poem() {
+export default function PoemPage() {
   const data = useLoaderData<Poem | null>();
 
   if (!data) {

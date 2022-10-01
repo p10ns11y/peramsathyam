@@ -37,6 +37,7 @@ function stopMediaRecorder(mediaRecorder: MediaRecorder) {
 const recorderMachine = createMachine<RecorderContext>(
   {
     id: 'voiceRecorder',
+    predictableActionArguments: true,
     context: {
       microphones: [],
       selectedMicrophone: null,
