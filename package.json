@@ -3,6 +3,7 @@
   "name": "peram-sathyam-personal-site",
   "description": "Peram Sathyam's personal site",
   "scripts": {
+    "test": "echo 'passed'",
     "build": "npm run build:css:prod && remix build",
     "build:css": "postcss styles/**/*.css --base styles --dir app/styles",
     "build:css:prod": "npm run build:css -- --env production",
