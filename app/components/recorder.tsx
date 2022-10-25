@@ -14,7 +14,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
 
 type RecorderContext = {
   microphones: Array<MediaDeviceInfo>;
-  microphonePermission: 'granted' | 'prompt' | 'denied';
+  microphonePermission: 'granted' | 'prompt' | 'denied' | 'unknown';
   selectedMicrophone: MediaDeviceInfo | null;
   recordedAudio: Blob | null;
   audioDowdoadUrl: string;
@@ -33,30 +33,39 @@ function stopMediaRecorder(mediaRecorder: MediaRecorder) {
   mediaRecorder.ondataavailable = null;
 }
 
+const initialContextValue: RecorderContext = {
+  microphones: [],
+  microphonePermission: 'unknown',
+  selectedMicrophone: null,
+  recordedAudio: null,
+  audioDowdoadUrl: '',
+};
+
 // Visualizer: https://stately.ai/viz/bc717051-f09f-4802-9a99-aee88d478d39
 // Machine image url: https://stately.ai/registry/machines/bc717051-f09f-4802-9a99-aee88d478d39.png
 const recorderMachine = createMachine<RecorderContext>(
   {
-    id: 'voiceRecorder',
+    context: initialContextValue,
     predictableActionArguments: true,
-    context: {
-      microphones: [],
-      microphonePermission: 'prompt',
-      selectedMicrophone: null,
-      recordedAudio: null,
-      audioDowdoadUrl: '',
-    },
+    id: 'voiceRecorder',
     initial: 'reading_microphones',
     description: 'Let the user select the microphones and record voice',
     states: {
       reading_microphones: {
         invoke: {
-          src: 'getAvailableMicrophones',
+          src: 'getAvailableMicrophones', // get the default microphone
           id: 'microphoneList',
-          onDone: {
-            target: 'ready_to_record',
-            actions: 'assignMicrophones',
-          },
+          onDone: [
+            {
+              target: 'ready_to_record',
+              actions: 'assignMicrophones',
+            },
+          ],
+          onError: [
+            {
+              target: 'no_microphone_access',
+            },
+          ],
         },
       },
       ready_to_record: {
@@ -64,58 +73,80 @@ const recorderMachine = createMachine<RecorderContext>(
           SELECT_MICROPHONE: {
             target: 'ready_to_record',
             actions: 'selectMicrophone',
+            internal: false,
           },
-          START_RECORDING: 'recording',
-          GET_MICROPHONE_CONSENT: {
-            target: 'getting_microphone_consent',
+          START_RECORDING: {
+            target: 'recording',
+          },
+          LOAD_ALL_MICROPHONES: {
+            target: 'loading_all_microphones',
           },
         },
       },
-      getting_microphone_consent: {
+      no_microphone_access: {
+        entry: 'resetUponMicrophoneAccessDenied',
+      },
+      loading_all_microphones: {
         invoke: {
-          src: 'getMicrophoneConsent',
+          src: 'invokeMicrophoneConsent',
           id: 'microphoneConsent',
-          onDone: {
-            target: 'reading_microphones',
-            actions: 'updateMicrophoneConsent',
-          },
+          onDone: [
+            {
+              target: 'reading_microphones',
+              actions: 'updateMicrophoneConsent',
+            },
+          ],
+          onError: [
+            {
+              target: 'no_microphone_access',
+            },
+          ],
         },
       },
       recording: {
-        id: 'currentMediaRecorder',
         invoke: {
           src: 'startRecording',
           id: 'mediaRecorder',
         },
-        initial: 'started',
+        initial: 'prompt',
         states: {
+          prompt: {
+            // TODO: Add Eventless ("Always") Transition to started if already permission granded
+            // https://xstate.js.org/docs/guides/transitions.html#transient-transitions
+            on: {
+              START: {
+                target: 'started',
+              },
+              MICROPHONE_CONSENT_DENIED: {
+                target: '#voiceRecorder.no_microphone_access',
+              },
+              MICROPHONE_CONSENT_GIVEN: {
+                target: 'started',
+                actions: 'updateMicrophoneConsent',
+              },
+            },
+          },
           started: {
             on: {
               STOP: {
                 target: 'stopped',
                 actions: sendTo('stop', { to: 'mediaRecorder' }),
               },
-              MICROPHONE_CONSENT_DENIED: {
-                target: '#voiceRecorder.ready_to_record',
-              },
             },
           },
           stopped: {
             on: {
-              RESTART: '#voiceRecorder.recording',
+              RESTART: {
+                target: '#voiceRecorder.recording',
+              },
               RECORD_COMPLETE: {
                 target: 'stopped',
                 actions: 'updateRecording',
+                internal: false,
               },
             },
           },
         },
-      },
-    },
-    on: {
-      SELECT_MICROPHONE: {
-        target: 'ready_to_record',
-        actions: 'selectMicrophone',
       },
     },
   },
@@ -133,33 +164,51 @@ const recorderMachine = createMachine<RecorderContext>(
         recordedAudio: (_, event) => event.recordedAudio,
         audioDowdoadUrl: (_, event) => event.audioDowdoadUrl,
       }),
+      // either the service invokeMicrophoneConsent call this or user consent action
+      // in startRecording call this
       updateMicrophoneConsent: assign({
-        microphonePermission: (_, event) => event.data.consent,
+        microphonePermission: (_, event) =>
+          event.data?.consent || event.consent,
       }),
+      // https://xstate.js.org/docs/guides/typescript.html#troubleshooting
+      // Using unused context here to make typecript happy and it will be fixed
+      // In v5. TODO: Remove once upgraded t0 v5
+      resetUponMicrophoneAccessDenied: assign((context) => ({
+        ...initialContextValue,
+        microphonePermission: 'denied',
+      })),
     },
     services: {
       getAvailableMicrophones: async function getAllMicroPhobes() {
+        const microphonePermission = await navigator.permissions.query({
+          name: 'microphone',
+        });
+
+        if (microphonePermission.state === 'denied') {
+          throw new Error('Microphone permission is denied');
+        }
+
         const allDevices = await navigator.mediaDevices.enumerateDevices();
         const audioInputDevices = allDevices.filter(
           (device) => device.kind === 'audioinput'
         );
 
-        const microphonePermission = await navigator.permissions.query({
-          name: 'microphone',
-        });
-
         return { audioInputDevices, permission: microphonePermission.state };
       },
-      getMicrophoneConsent: async function getMicrophoneConsent() {
+      invokeMicrophoneConsent: async function invokeMicrophoneConsent() {
         try {
+          // const allDevices = await navigator.mediaDevices.enumerateDevices();
+          // const audioInputDevices = allDevices.filter(
+          //   (device) => device.kind === 'audioinput'
+          // );
           await navigator.mediaDevices.getUserMedia({
             audio: true,
             video: false,
           });
 
           return { consent: 'granted' };
-        } catch {
-          return { consent: 'denied' };
+        } catch (error) {
+          throw error;
         }
       },
       startRecording: (context) => (sendBack, onReceive) => {
@@ -193,6 +242,11 @@ const recorderMachine = createMachine<RecorderContext>(
             mediaStream = await navigator.mediaDevices.getUserMedia({
               audio,
               video: false,
+            });
+            console.log('MICROPHONE_CONSENT_GIVEN');
+            sendBack({
+              type: 'MICROPHONE_CONSENT_GIVEN',
+              consent: 'granted',
             });
           } catch (error) {
             sendBack({
@@ -247,8 +301,11 @@ export default function Recorder(props: Props) {
   const { context } = state;
 
   const renderRecorder = () => {
-    if (context.microphonePermission === 'denied') {
-      return null;
+    if (
+      state.matches('no_microphone_access') ||
+      context.microphonePermission === 'denied' // may be redundant check
+    ) {
+      return <div>Microphone access is denied</div>;
     }
 
     return (
@@ -262,7 +319,11 @@ export default function Recorder(props: Props) {
               Record
             </button>
           ) : null}
-          {state.matches('recording') && !state.matches('recording.stopped') ? (
+          {state.matches('recording') && state.matches('recording.prompt') ? (
+            <span>Waiting user consent for microphone...</span>
+          ) : null}
+
+          {state.matches('recording') && state.matches('recording.started') ? (
             <>
               <button
                 className="p-2 text-white rounded-full bg-pink-700 hover:bg-pink-500"
@@ -310,11 +371,8 @@ export default function Recorder(props: Props) {
       <details className="hidden sm:block p-4 shadow-2xl rounded-lg dark:bg-gray-800 open:dark:shadow-glowing">
         <summary>Want to record and download in your voice?</summary>
 
-        {context.microphonePermission === 'denied' ? (
-          <div>Microphone access is denied</div>
-        ) : null}
-
-        {context.microphonePermission === 'granted' ? (
+        {context.microphonePermission === 'granted' &&
+        context.selectedMicrophone?.deviceId ? (
           <select
             name="microphones"
             className="p-4 text-black dark:text-white dark:bg-gray-600 border-rose-700 rounded-lg"
@@ -333,7 +391,7 @@ export default function Recorder(props: Props) {
         {context.microphonePermission === 'prompt' ? (
           <button
             className="p-2 text-white rounded-full bg-pink-700 hover:bg-pink-500"
-            onClick={() => send({ type: 'GET_MICROPHONE_CONSENT' })}
+            onClick={() => send({ type: 'LOAD_ALL_MICROPHONES' })}
           >
             Load All Microphones
           </button>
